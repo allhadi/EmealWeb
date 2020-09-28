@@ -1,0 +1,67 @@
+﻿.emeal-product {
+    background-color: aliceblue;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+
+div.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+.list-home-list {
+    padding: 20px,0px,20px,0px;
+    border: dashed;
+}
+
+.btn-secondary.btn-disable {
+    cursor: not-allowed;
+    pointer-events: none;
+    /*Button disabled - CSS color class*/
+    color: red;
+    background-color: black;
+}
+
+.cart .btn-action {
+    width: 40px;
+    font-weight: bold;
+}
+
+.cart .cart-title {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.card {
+    padding: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.cart .btn-check-out {
+    width: 85px;
+    background-color: #dc3545;
+    border: none;
+    font-size: 14px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.cart .bottom {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.order-type {
+    margin-top: 20px;
+}
+
+.cart .cart-allign {
+    text-align: right
+}
+
+.cart .order-type-btn {
+    margin-bottom: 10px;
+}

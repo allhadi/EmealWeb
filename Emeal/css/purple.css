@@ -1,0 +1,21 @@
+﻿.product-grid__item:hover body.theme-color-purple .product-grid__item__name, .product-grid__item:hover body.theme-color-purple .product-grid__item__price, body.theme-color-purple .bg-main-color, body.theme-color-purple .button--border--solid, body.theme-color-purple .mobile-nav, body.theme-color-purple .product-grid__item:hover .product-grid__item__name, body.theme-color-purple .product-grid__item:hover .product-grid__item__price, body.theme-color-purple .section--themed {
+    background-color: purple;
+    color: #fff
+}
+
+.hamburger.lines:hover.active body.theme-color-purple span:after, .hamburger.lines:hover.active body.theme-color-purple span:before, .hamburger body.theme-color-purple span, .hamburger body.theme-color-purple span:after, .hamburger body.theme-color-purple span:before, body.theme-color-purple .bg-secondary-color, body.theme-color-purple .hamburger.lines:hover.active span:after, body.theme-color-purple .hamburger.lines:hover.active span:before, body.theme-color-purple .hamburger span, body.theme-color-purple .hamburger span:after, body.theme-color-purple .hamburger span:before, body.theme-color-purple .nav-link--home__text:after {
+    background-color: #fff;
+    color: purple
+}
+
+.blogposts-centered body.theme-color-purple .blogpost-title, body.theme-color-purple .blogposts-centered .blogpost-title, body.theme-color-purple .button--border, body.theme-color-purple .font-main-color, body.theme-color-purple .nav-link, body.theme-color-purple .section__hero-content, body.theme-color-purple footer a, footer body.theme-color-purple a {
+    color: #fff
+}
+
+article body.theme-color-purple a, article body.theme-color-purple a:visited, body.theme-color-purple .employee-grid__item__email, body.theme-color-purple .font-link-color, body.theme-color-purple article a, body.theme-color-purple article a:visited {
+    color: purple
+}
+
+body.theme-color-purple--active.nav-link:visited, body.theme-color-purple .border-main-color, body.theme-color-purple .button--border, body.theme-color-purple .nav-link--active, body.theme-color-purple .nav-link:hover {
+    border-color: #fff
+}

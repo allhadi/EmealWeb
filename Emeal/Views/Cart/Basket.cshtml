@@ -1,0 +1,56 @@
+﻿@model Emeal.Model.Cart
+    @{ 
+        int index = 0;
+        bool isDelivery = Model.OrderType == Emeal.Common.Enums.OrderType.Delivery;
+        double grandTotal = Model.GrandTotal;
+    }
+   
+<div class="cart card ">
+    <div class="card-title"> Cart </div>
+    <div class="row order-type-btn">
+        <div class="col-sm-12 btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="col-sm-6 btn btn-secondary active ">
+                <input type="radio" name="order-option" id="opt-collection" autocomplete="off" checked> Collection
+            </label>
+            <label class="col-sm-6 btn btn-secondary">
+                <input type="radio" name="order-option" id="opt-delivery" autocomplete="off"> Delivery
+            </label>
+
+        </div>
+    </div>
+    @foreach (var line in Model.Lines)
+    {
+        <div><strong>@line.Name</strong></div>
+        <div class="row ">
+            <div class="col-sm-5"> @line.Quantity x </div>
+            <div class="col-sm-3"> @line.Total.ToString("C") </div>
+            <div class="col-sm-4"> <button onclick="qtyAdd(@index)" class="btn btn-success btn-action"> + </button> <button onclick="qtyRed(@index)" class="btn btn-danger btn-action"> - </button> </div>
+        </div>
+        index++;
+    }
+    <form class="bottom">
+        <div class="col-sm-12 input-group">
+            <input type="text" class="form-control" id="GetDiscountCode" placeholder="Discount Code">
+            <div class="input-group-append">
+                <input class="btn-default" onclick="applyDiscountCode()" type="button" id="btnSave" value="Apply" />
+            </div>
+        </div>
+    </form>
+
+    @if (Model.DiscountApplied != null)
+    {
+        <div class="row bottom">
+            <div class="col-sm-6"> @Model.DiscountApplied.DiscountName</div>
+            <div class="col-sm-6 cart-allign">@Model.DiscountValue.ToString("C")</div>
+        </div>
+    }
+    <div class="row ">
+        <div class="col-sm-6">Grand Total</div>
+        <div class="col-sm-6 cart-allign">@grandTotal.ToString("C")</div>
+    </div>
+
+    <div class="row chk-out-btn">
+        <div class="col-sm-12 "><button class="btn btn-check-out">Check Out</button></div>
+    </div>
+
+</div>
