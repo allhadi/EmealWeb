@@ -1,0 +1,158 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.UserRegistration>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+</head>
+<div class="row">
+    <div class="col-md-6 container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card login">
+                    <header class="card-header-login">
+                        <h4 class="card-title mt-2">Login</h4>
+                    </header>
+                    
+                    <form>
+                        <div class="form-group">
+                            <input type="email" id="userName" class="form-control" placeholder="UserName">
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <input class="form-control" id="password" type="password" placeholder="Password">
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <input type="submit" onclick="submitLoginData()" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a href="#" class="ForgetPwd">Forget Password?</a>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-md-6 container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <header class="card-header">
+                        <a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+                        <h4 class="card-title mt-2">Sign up</h4>
+                    </header>
+                    <article class="card-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label>First name </label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="">
+                                </div> <!-- form-group end.// -->
+                                <div class="col form-group">
+                                    <label>Last name</label>
+                                    <input type="text" id="lastName" class="form-control" placeholder=" ">
+                                </div> <!-- form-group end.// -->
+                            </div> <!-- form-row end.// -->
+                            <div class="form-group">
+                                <label>Email address</label>
+                                <input type="email" id="email" class="form-control" placeholder="">
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" id="phone" class="form-control" placeholder="">
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" id="address" class="form-control" placeholder="">
+                            </div> <!-- form-group end.// -->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>City</label>
+                                    <input type="text" id="city" class="form-control">
+                                </div> <!-- form-group end.// -->
+                                <div class="form-group col-md-6">
+                                    <label>Zip Code</label>
+                                    <input type="text" id="zipCode" class="form-control">
+                                </div> <!-- form-group end.// -->
+                            </div> <!-- form-row.// -->
+                            <div class="form-group">
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="option1">
+                                    <span class="form-check-label"> Male </span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" value="option2">
+                                    <span class="form-check-label"> Female</span>
+                                </label>
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group">
+                                <label for="birthDate" class="control-label">Date of Birth</label>
+                                <div class="">
+                                    <input type="date" id="birthDate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input class="form-control" id="password" type="password">
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group">
+                                <label>Confirm password</label>
+                                <input class="form-control" id="confirmPassword" type="password">
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group">
+                                <button type="submit" onclick="submitRegistrationData()" class="btn btn-primary btn-block"> Register  </button>
+                            </div> <!-- form-group// -->
+                            <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
+                        </form>
+                    </article> <!-- card-body end .// -->
+                    <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>
+                </div> <!-- card.// -->
+            </div> <!-- col.//-->
+
+        </div> <!-- row.//-->
+
+
+    </div>
+    <!--container end.//-->
+</div>
+
+<script>
+
+     $(".btn-group-toggle input:radio").on('change', function () {
+        $.post("/umbraco/surface/Cart/OrderType/", function (data) {
+         });
+     });
+
+
+    function submitRegistrationData() {
+        $.post("/umbraco/surface/User/Registration",
+            {
+                firstName: $("#firstName").val(),
+                lastName: $("#lastName").val(),
+                email: $("#email").val(),
+                address: $("#address").val(),
+                phone: $("#phone").val(),
+                city: $("#city").val(),
+                zipCode: $("#zipCode").val(),
+                password: $("#password").val(),
+                confirmPassword: $("#confirmPassword").val(),
+                birthDate: $("#birthDate").val(),
+                gender: $("#gender").val()
+            }
+        );
+    }
+
+    function submitLoginData() {
+        $.post("/umbraco/surface/User/Login",
+            {
+                userName: $("#userName").val(),
+                password: $("#password").val()
+            }
+        );
+    }
+    
+</script>

@@ -71,6 +71,7 @@
                 cart.DiscountCode = discountCode;
             }
             CartSession = cart;
+
             return null;
         }
 

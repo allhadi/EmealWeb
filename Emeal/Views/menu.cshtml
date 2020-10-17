@@ -128,6 +128,7 @@
     function applyDiscountCode() {
         $.post("/umbraco/surface/Cart/GetDiscountCode", { discountCode: $("#GetDiscountCode").val() }, function (data) {
             $('#cart_content').load('@Url.Action("Basket","Cart")');
+            alert(data);
         });
     }
 

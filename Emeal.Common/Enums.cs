@@ -9,6 +9,7 @@
             Delivery,
             Collection
         }
+
         public enum DiscountorderType
         {
             [Description("Delivery")]
