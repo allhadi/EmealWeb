@@ -678,6 +678,8 @@
     <Content Include="Views\menu.cshtml" />
     <Content Include="Umbraco.Web.PublishedContentModels\ood.flag" />
     <Content Include="Views\UserRegistration.cshtml" />
+    <Content Include="Views\User\RegistrationForm.cshtml" />
+    <Content Include="Views\User\LoginForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -687,7 +689,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Models\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\index.d.ts" />
