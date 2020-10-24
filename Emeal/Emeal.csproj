@@ -622,6 +622,7 @@
     <Compile Include="Umbraco.Web.PublishedContentModels\Home.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Image.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Item.generated.cs" />
+    <Compile Include="Umbraco.Web.PublishedContentModels\Login.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Member.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Menu.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\NavigationBase.generated.cs" />

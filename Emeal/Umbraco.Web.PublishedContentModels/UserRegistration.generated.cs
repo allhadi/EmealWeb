@@ -53,11 +53,11 @@ namespace Umbraco.Web.PublishedModels
 		public string Address => this.Value<string>("address");
 
 		///<summary>
-		/// Ciry
+		/// City
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.0")]
-		[ImplementPropertyType("ciry")]
-		public string Ciry => this.Value<string>("ciry");
+		[ImplementPropertyType("city")]
+		public string City => this.Value<string>("city");
 
 		///<summary>
 		/// ConfirmPassword

@@ -623,6 +623,7 @@ Umbraco.Web.PublishedModels.Folder, Emeal, Version=1.0.0.0, Culture=neutral, Pub
 Umbraco.Web.PublishedModels.Home, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Image, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Item, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Login, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Member, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Menu, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.NavigationBase, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null

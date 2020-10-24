@@ -12,7 +12,7 @@ namespace Emeal.Model.ViewModels
         [Required(ErrorMessage = "Required")]
         [EmailAddress(ErrorMessage = "Invalid Email")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [MinLength(6, ErrorMessage = "Minimum Length")]

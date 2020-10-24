@@ -11,6 +11,7 @@ using System.Reflection.Metadata;
 using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
+using System.Web.Security;
 using Umbraco.Web.Mvc;
 
 namespace Emeal.Controllers
@@ -67,7 +68,7 @@ namespace Emeal.Controllers
         {
             return PartialView();
         }
-
+        [HttpPost]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             var apiUrl = "https://localhost:44324";
@@ -80,19 +81,32 @@ namespace Emeal.Controllers
 
             try
             {
-                client.ExecuteAsync(request, response =>
+                var response = client.Execute(request);
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        // OK
-                        var accesscode = response.Content;
-                    }
-                    else
-                    {
-                        var loginError = "LoginError";
-                        ViewBag.LoginError = true;
-                    }
-                });
+                    // OK
+                    var accesscode = response.Content;
+                    FormsAuthentication.SetAuthCookie(loginViewModel.UserName, true);
+                }
+                else
+                {
+                    var loginError = "LoginError";
+                }
+
+
+                //    client.ExecuteAsync(request, response =>
+                //    {
+                //        if (response.StatusCode == HttpStatusCode.OK)
+                //        {
+                //            // OK
+                //            var accesscode = response.Content;
+                //            FormsAuthentication.SetAuthCookie(loginViewModel.Email, true);
+                //        }
+                //        else
+                //        {
+                //            var loginError = "LoginError";
+                //        }
+                //    });
             }
             catch (Exception error)
             {
@@ -105,6 +119,12 @@ namespace Emeal.Controllers
         public ActionResult LoginForm()
         {
             return PartialView();
+        }
+        [Authorize]
+        public ActionResult Test()
+        {
+            var user = User.Identity;
+            return null;
         }
     }
 }
