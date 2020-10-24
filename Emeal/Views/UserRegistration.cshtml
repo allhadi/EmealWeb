@@ -17,13 +17,7 @@
                 @{
                     Html.RenderAction("LoginForm", "User");
                 }
-                @if (ViewBag.LoginError != null)
-                {
-                <span>
-                   ok  @Emeal.Common.Constants.USER_LOGIN_ERROR
-                </span>
-                       
-                }
+                
             </div>
             </div>
     </div>
@@ -33,13 +27,6 @@
             <div class="col-md-6">
                 @{
                     Html.RenderAction("RegistrationForm", "User");
-                }
-                @if (ViewBag.RegistrationError != null)
-                {
-                <span>
-                  ok  @Emeal.Common.Constants.USER_EXISTS
-                </span>
-                     
                 }
             </div> <!-- col.//-->
         </div> <!-- row.//-->

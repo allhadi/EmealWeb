@@ -1,0 +1,28 @@
+﻿
+@if (TempData["Error"] != null)
+{
+    <div class="text-danger  well-large">
+        @Html.Raw(TempData["Error"].ToString())
+    </div>
+}
+
+@if (TempData["Info"] != null)
+{
+    <div class="text-info  well-large">
+        @Html.Raw(TempData["Info"].ToString())
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="text-success  well-large">
+        @Html.Raw(TempData["Success"].ToString())
+    </div>
+} 
+
+@if (TempData["Warning"] != null)
+{
+    <div class="text-warning  well-large">        
+    @Html.Raw(TempData["Warning"].ToString())     
+    </div>
+}

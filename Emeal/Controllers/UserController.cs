@@ -1,4 +1,5 @@
-﻿using Emeal.Model.ViewModel;
+﻿using Emeal.Common;
+using Emeal.Model.ViewModel;
 using Emeal.Model.ViewModels;
 using Newtonsoft.Json;
 using RestSharp;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata;
 using System.Web;
 using System.Web.Http.Results;
 using System.Web.Mvc;
@@ -49,7 +51,7 @@ namespace Emeal.Controllers
                     else
                     {
                         var result = "Not Allowed";
-                        ViewBag.RegistrationError = true; 
+                        TempData["ErrorMessage"] = Constants.USER_EXISTS;
                     }
                 });
             }

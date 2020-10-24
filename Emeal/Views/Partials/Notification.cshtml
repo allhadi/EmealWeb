@@ -1,0 +1,302 @@
+﻿
+@*
+    https://demos.telerik.com/kendo-ui/notification/templates
+    https://github.com/telerik/kendo-ui-core
+*@
+
+<link href="~/Content/kendo.common.min.css" rel="stylesheet" />
+<link href="~/Content/kendo.default.min.css" rel="stylesheet" />
+<link href="~/Content/kendo.default.mobile.min.css" rel="stylesheet" />
+
+<style>
+    
+            .k-notification h3 {
+                padding: 0px 10px 5px !important;
+                font-size: 1em;
+                line-height: normal;
+                color: white;
+            }
+            
+            .k-notification {
+                border-radius: 0px !important;
+            }
+    
+            
+            .error{
+                
+                font-size:18px;
+                padding:30px;
+                background-color:#941315;
+                border-color:#941315;
+                max-width: 400px;
+            }
+            
+            .warning{
+                max-width: 400px;
+                font-size:18px;
+                padding:30px;
+                background-color:#941315;
+                border-color:#941315;
+            }
+            
+              .info{
+                
+                font-size:18px;
+                padding:30px;
+                max-width: 400px;
+                background-color:#f28f00;
+                border-color:#f28f00;
+            }   
+            
+            
+            
+            
+            .success{
+                font-size:18px;
+                padding:30px;
+                max-width: 400px;
+                background-color:#28a745;
+                border-color:#28a745;
+            }            
+            
+            .error H3{
+                margin-top:-8px;
+                text-transform:uppercase;
+            }
+             .warning H3{
+                margin-top:-8px;
+                text-transform:uppercase;
+            }           
+            
+             .success H3{
+                margin-top:-8px;
+                text-transform:uppercase;
+            }           
+              .info H3{
+                margin-top:-8px;
+                text-transform:uppercase;
+            }          
+            
+            
+            .k-notification p {
+                word-wrap: break-word;
+                white-space: normal;
+                margin: 0 0 0 10px !important;
+            }
+            
+            
+</style>
+
+
+<div>
+    <span id="notification" style="display:none;"></span>
+
+    <script id="infoTemplate" type="text/x-kendo-template">
+        <div class="info">
+            
+            <h3>#= title #</h3>
+            <p>#= message #</p>
+        </div>
+    </script>
+
+    <script id="errorTemplate" type="text/x-kendo-template">
+        <div class="error">
+            
+            <h3>#= title #</h3>
+            <p>#= message #</p>
+        </div>
+    </script>
+
+    <script id="successTemplate" type="text/x-kendo-template">
+        <div class="success">
+            
+            <h3>#= title #</h3>
+            <p>#= message #</p>
+        </div>
+    </script>
+
+    <script id="warningTemplate" type="text/x-kendo-template">
+        <div class="warning">
+            
+            <h3>#= title #</h3>
+            <p>#= message #</p>
+        </div>
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            var notification = $("#notification").kendoNotification({
+                position: {
+                    pinned: true,
+                    top: 30,
+                    right: 30
+                },
+                autoHideAfter: 7000,
+                stacking: "down",
+                templates: [{
+                    type: "notification-info",
+                    template: $("#infoTemplate").html()
+                }, {
+                        type: "notification-error",
+                    template: $("#errorTemplate").html()
+                }, {
+                        type: "notification-success",
+                    template: $("#successTemplate").html()
+                    }, {
+                        type: "notification-warning",
+                        template: $("#warningTemplate").html()
+                    }]
+
+            }).data("kendoNotification");
+
+            var message = '@ViewBag.InfoMessage';
+            if (message != '') {
+                notification.show({
+                    title: "Information",
+                    message: message
+                }, "notification-info");
+            }   
+
+            var message = '@ViewBag.ErrorMessage';
+            if (message != '') {              
+                notification.show({
+                    title: "Error",
+                    message: message
+                }, "notification-error");
+            }
+
+            var message = '@ViewBag.SuccessMessage';
+            if (message != '') {
+                notification.show({
+                    title: "Success",
+                    message: message
+                }, "notification-success");
+            }
+
+            var message = '@ViewBag.WarningMessage';
+            if (message != '') {
+                notification.show({
+                    title: "Warning",
+                    message: message
+                }, "notification-warning");
+            }
+
+            var message = '@TempData["SuccessMessage"]';
+            if (message != '') {
+                notification.show({
+                    title: "Success",
+                    message: message.toString()
+                }, "notification-success");
+            }
+
+             var message = '@TempData["ErrorMessage"]';
+            if (message != '') {
+                notification.show({
+                    title: "Error",
+                    message: message.toString()
+                }, "notification-error");
+            }
+
+            $(document).one("kendo:pageUnload", function () { if (notification) { notification.hide(); } });
+
+        });
+    </script>
+
+    <style>
+
+        .k-notification {
+            color: white;
+        }
+
+        .k-notification-notification-error {
+            background-color: red;
+        }
+
+        .k-notification-notification-success {
+            background-color: green;
+        }
+
+        /* Notifications */
+        .k-notification h3 {
+            padding: 30px 10px 5px;
+            font-size: 1em;
+            line-height: normal;
+            color: white;
+        }
+
+        .k-notification img {
+            margin: 20px;
+            float: left;
+        }
+
+        .k-notification p {
+            word-wrap: break-word;
+            white-space: normal;
+            margin: 0 0 0 76px;
+        }
+
+        /* Info template */
+        .notification-info {
+            width: 300px;
+            height: 100px;
+        }
+
+        /* Error template */
+        .notification-error {
+            width: 300px;
+            height: 100px;
+        }
+
+        /* Success template */
+        .notification-success {
+            width: 300px;
+            height: 100px;
+        }
+
+        /* Warning template */
+        .notification-warning {
+            width: 300px;
+            height: 100px;
+        }
+
+        /* For Bootstrap v4 theme */
+        .k-bootstrap-v4 .k-notification h3 {
+            padding: 10px 10px 5px;
+        }
+
+        .k-bootstrap-v4 .k-notification img {
+            margin: 10px 20px 0 0;
+        }
+
+        .k-bootstrap-v4 .notification-info,
+        .k-bootstrap-v4 .notification-error,
+        .k-bootstrap-v4 .notification-success,
+        .k-bootstrap-v4 .notification-warning {
+            width: calc( 300px - 2.5rem );
+            height: calc( 100px - 1.5rem );
+        }
+
+
+        /* For Material v2 theme */
+        .k-material-v2 .k-notification h3 {
+            padding: 10px 10px 5px;
+        }
+
+        .k-material-v2 .k-notification img {
+            margin: 10px 20px 0 0;
+        }
+
+        .k-material-v2 .notification-info,
+        .k-material-v2 .notification-error,
+        .k-material-v2 .notification-success,
+        .k-material-v2 .notification-warning {
+            width: 270px;
+            height: 70px;
+            color: white !important;
+         
+        }
+
+    </style>
+
+</div>

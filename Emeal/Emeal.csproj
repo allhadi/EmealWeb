@@ -471,6 +471,13 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\notification\error-icon.png" />
+    <Content Include="Content\images\notification\info-icon.png" />
+    <Content Include="Content\images\notification\success-icon.png" />
+    <Content Include="Content\images\notification\warning.png" />
+    <Content Include="Content\kendo.common.min.css" />
+    <Content Include="Content\kendo.default.min.css" />
+    <Content Include="Content\kendo.default.mobile.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\main.css" />
     <Content Include="css\onlineorder.css" />
@@ -516,6 +523,9 @@
     <Content Include="scripts\jquery-3.4.1.min.js" />
     <Content Include="scripts\jquery-3.4.1.slim.js" />
     <Content Include="scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="scripts\kendo.core.min.js" />
+    <Content Include="scripts\kendo.notification.min.js" />
+    <Content Include="scripts\kendo.ui.core.min.js" />
     <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="scripts\popper-utils.js" />
     <Content Include="scripts\popper-utils.min.js" />
@@ -680,6 +690,8 @@
     <Content Include="Views\UserRegistration.cshtml" />
     <Content Include="Views\User\RegistrationForm.cshtml" />
     <Content Include="Views\User\LoginForm.cshtml" />
+    <Content Include="Views\Shared\_Notification.cshtml" />
+    <Content Include="Views\Partials\Notification.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
