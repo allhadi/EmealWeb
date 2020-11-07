@@ -29,6 +29,6 @@ namespace Emeal.Model.ViewModels
         [Display (Name="Confirm Password")]
         public string ConfirmPassword { get; set; }
 
-        public int CompanyId = 1;
+        public int CompanyId { get; set; }
     }
 }

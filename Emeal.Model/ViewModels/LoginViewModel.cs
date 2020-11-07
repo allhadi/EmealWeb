@@ -18,5 +18,7 @@ namespace Emeal.Model.ViewModels
         [MinLength(6, ErrorMessage = "Minimum Length")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public int CompanyId { get; set; }
     }
 }

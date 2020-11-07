@@ -1,8 +1,11 @@
 ﻿using Emeal.Common;
 using Emeal.Model.ViewModel;
 using Emeal.Model.ViewModels;
+using Emeal.Models;
+using Emeal.Security;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Serialization.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +28,7 @@ namespace Emeal.Controllers
         // GET: User
         public ActionResult Registration(RegistrationViewModel registrationViewModel)
         {
+            registrationViewModel.CompanyId = 1; //ToDo = get companyID from Umbraco Setup.
             var apiUrl = "https://localhost:44324";
             var method = "/Access/registration";
             var client = new RestClient(apiUrl);
@@ -71,6 +75,7 @@ namespace Emeal.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
+            loginViewModel.CompanyId = 1; //ToDo = get companyID from Umbraco Setup.
             var apiUrl = "https://localhost:44324";
             var method = "/Access/login";
             var client = new RestClient(apiUrl);
@@ -84,29 +89,14 @@ namespace Emeal.Controllers
                 var response = client.Execute(request);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    // OK
-                    var accesscode = response.Content;
-                    FormsAuthentication.SetAuthCookie(loginViewModel.UserName, true);
+                    var userData = new JsonDeserializer().Deserialize<LoggedUser>(response);
+                    AuthenticateTicket.AddAuthenticationTicket(userData);
                 }
                 else
                 {
                     var loginError = "LoginError";
                 }
 
-
-                //    client.ExecuteAsync(request, response =>
-                //    {
-                //        if (response.StatusCode == HttpStatusCode.OK)
-                //        {
-                //            // OK
-                //            var accesscode = response.Content;
-                //            FormsAuthentication.SetAuthCookie(loginViewModel.Email, true);
-                //        }
-                //        else
-                //        {
-                //            var loginError = "LoginError";
-                //        }
-                //    });
             }
             catch (Exception error)
             {
@@ -123,8 +113,8 @@ namespace Emeal.Controllers
         [Authorize]
         public ActionResult Test()
         {
-            var user = User.Identity;
-            return null;
+            var user = AuthenticateTicket.GetCurrentUser();
+            return Json(user,JsonRequestBehavior.AllowGet);
         }
     }
 }
