@@ -19,5 +19,11 @@
             [Description("Both")]
             Both
         }
+
+        public enum AddressType
+        {
+           DeliveryAddress,
+           BillingAddress
+        }
     }
 }

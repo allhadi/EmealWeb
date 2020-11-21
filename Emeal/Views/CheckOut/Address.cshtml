@@ -1,0 +1,20 @@
+﻿@model Emeal.Model.ViewModels.AddressListViewModel
+
+<div class="card border-dark mb-3">
+    <div class="card-header">@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery") Address</div>
+    <div class="card-body text-dark">
+        @foreach (var address in Model.Addresses)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")AddressRadios" id="exampleRadios1" value="option1" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                    @address.AddressLine
+                </label>
+            </div>
+        }
+
+
+        <hr />
+        <button type="button" class="btn btn-primary btn-sm">Add Adress</button>
+    </div>
+</div>

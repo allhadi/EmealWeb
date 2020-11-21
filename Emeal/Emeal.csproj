@@ -604,6 +604,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\LoggedUser.cs" />
     <Compile Include="Models\UmbracoModels.cs">
@@ -614,6 +615,8 @@
     <Compile Include="Umbraco.Web.PublishedContentModels\Blog.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Blogpost.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Category.generated.cs" />
+    <Compile Include="Umbraco.Web.PublishedContentModels\Checkout.generated.cs" />
+    <Compile Include="Umbraco.Web.PublishedContentModels\CheckoutFolder.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Contact.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\ContentBase.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\ContentPage.generated.cs" />
@@ -695,6 +698,8 @@
     <Content Include="Views\User\LoginForm.cshtml" />
     <Content Include="Views\Shared\_Notification.cshtml" />
     <Content Include="Views\Partials\Notification.cshtml" />
+    <Content Include="Views\CheckOut\Checkout.cshtml" />
+    <Content Include="Views\CheckOut\Address.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

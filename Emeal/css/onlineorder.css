@@ -40,8 +40,8 @@ div.sticky {
     margin-bottom: 5px;
 }
 
-.cart .btn-check-out {
-    width: 85px;
+.btn-check-out {
+    width: 100%;
     background-color: #dc3545;
     border: none;
     font-size: 14px;

@@ -90,13 +90,25 @@
                     }
                 </div>
 
-                <div class="col-md-4" id="cart_content">
-                    
+                <div class="col-md-4">
+                    <div id="cart_content">
                         @{
                             Html.RenderAction("Basket", "Cart");
                         }
-
                     </div>
+                   
+                    <div class="row chk-out-btn">
+                        <div class="col-md-12 " id="checkout-btn">
+                            <div class="col-md-6">
+                               
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-danger btn-check-out1" href="/Checkout/Payment">Check Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
         </div>
     </div>
@@ -129,6 +141,11 @@
         $.post("/umbraco/surface/Cart/GetDiscountCode", { discountCode: $("#GetDiscountCode").val() }, function (data) {
             $('#cart_content').load('@Url.Action("Basket","Cart")');
             alert(data);
+        });
+    }
+
+    function checkOut() {
+        $.post("/umbraco/surface/CheckOut/Index/" + index, function (data) {
         });
     }
 

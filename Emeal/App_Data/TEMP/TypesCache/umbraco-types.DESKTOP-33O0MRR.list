@@ -290,6 +290,7 @@ Umbraco.Web.Cache.PublicAccessCacheRefresher, Umbraco.Web, Version=8.0.0.0, Cult
 Umbraco.Web.Cache.TemplateCacheRefresher, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Cache.UserCacheRefresher, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Emeal.Controllers.CartController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Emeal.Controllers.CheckOutController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Emeal.Controllers.UserController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Validation.ContentTypeModelValidator, Umbraco.ModelsBuilder, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Validation.MediaTypeModelValidator, Umbraco.ModelsBuilder, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -371,6 +372,7 @@ Umbraco.Web.Controllers.UmbLoginStatusController, Umbraco.Web, Version=8.0.0.0, 
 Umbraco.Web.Controllers.UmbRegisterController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbLoginController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Emeal.Controllers.CartController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Emeal.Controllers.CheckOutController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Emeal.Controllers.UserController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 Umbraco.Web.Mvc.IRenderMvcController
@@ -459,6 +461,7 @@ Umbraco.Web.Controllers.UmbLoginStatusController, Umbraco.Web, Version=8.0.0.0, 
 Umbraco.Web.Controllers.UmbRegisterController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbLoginController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Emeal.Controllers.CartController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Emeal.Controllers.CheckOutController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Emeal.Controllers.UserController, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 Umbraco.Core.Dashboards.IDashboard
@@ -615,6 +618,8 @@ Umbraco.Core.Models.PublishedContent.PublishedContentModel
 Umbraco.Web.PublishedModels.Blog, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Blogpost, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Category, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.Checkout, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+Umbraco.Web.PublishedModels.CheckoutFolder, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.Contact, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.ContentBase, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.PublishedModels.ContentPage, Emeal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null

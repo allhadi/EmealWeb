@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Checkout>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "master.cshtml";
+}
+
+<section class="section">
+    <div class='container'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    <h2 style="text-align: center;">
+                        Review Your Order & Complete Checkout
+                    </h2>
+                    <hr />
+                    <div class="card border-dark mb-3">
+                        <div class="card-header">Basket</div>
+                        <div class="card-body text-dark">
+                            <p class="card-text">
+                                @{
+                                Html.RenderAction("Basket", "Cart");
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-info" style="width: 100%;">Add More Items</a>
+                    <hr />
+                    <div>
+                        @{
+                        Html.RenderAction("DeliveryAddress", "CheckOut");
+                        }
+
+                        @{
+                        Html.RenderAction("BillingAddress", "CheckOut");
+                        }
+                        <hr />
+                        <div class="card border-dark mb-3">
+                            <div class="card-header">Payment</div>
+                            <div class="card-body text-dark">
+                                <button type="button" class="btn btn-primary btn-sm">Payment >></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
