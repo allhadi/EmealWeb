@@ -610,6 +610,7 @@
     <Compile Include="Models\UmbracoModels.cs">
       <Generator>UmbracoModelsBuilder</Generator>
     </Compile>
+    <Compile Include="OrderApi\ApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthenticateTicket.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Blog.generated.cs" />

@@ -22,9 +22,19 @@ namespace Emeal.Security
 
         public static LoggedUser GetCurrentUser()
         {
+            var user = HttpContext.Current.User;
+            if (!user.Identity.IsAuthenticated)
+            {
+                return null;
+            }
             FormsIdentity formsIdentity = (FormsIdentity)HttpContext.Current.User.Identity;
             var userData = formsIdentity.Ticket.UserData;
             return JsonConvert.DeserializeObject<LoggedUser>(userData);
+        }
+
+        internal static void AddAuthenticationTicket(object userData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

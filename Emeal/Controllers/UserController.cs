@@ -1,7 +1,9 @@
 ﻿using Emeal.Common;
+using Emeal.Model.ApiModels;
 using Emeal.Model.ViewModel;
 using Emeal.Model.ViewModels;
 using Emeal.Models;
+using Emeal.OrderApi;
 using Emeal.Security;
 using Newtonsoft.Json;
 using RestSharp;
@@ -31,8 +33,6 @@ namespace Emeal.Controllers
             registrationViewModel.CompanyId = 1; //ToDo = get companyID from Umbraco Setup.
             var apiUrl = "https://localhost:44324";
             var method = "/Access/registration";
-            var client = new RestClient(apiUrl);
-            var request = new RestRequest(method, Method.POST);
             var dataModel = new RegistrationDto()
             {
                 CompanyId = registrationViewModel.CompanyId,
@@ -40,31 +40,14 @@ namespace Emeal.Controllers
                 Name = registrationViewModel.Name,
                 Password = registrationViewModel.Password
             };
-            var data = JsonConvert.SerializeObject(dataModel);
-            request.AddParameter("application/json; charset=utf-8", data, ParameterType.RequestBody);
-            request.RequestFormat = DataFormat.Json;
 
-            try
-            {
-                client.ExecuteAsync(request, response =>
-                {
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        // OK
-                        var accesscode = response.Content;
-                    }
-                    else
-                    {
-                        var result = "Not Allowed";
-                        TempData["ErrorMessage"] = Constants.USER_EXISTS;
-                    }
-                });
-            }
-            catch (Exception error)
-            {
-                // Log
-            }
+            var apiClient = new ApiClient(apiUrl);
+            var response = apiClient.Post<ApiResult, RegistrationDto>(method, dataModel);
 
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                TempData["ErrorMessage"] = Constants.USER_EXISTS;
+            }
             return CurrentUmbracoPage();
         }
 
@@ -78,29 +61,12 @@ namespace Emeal.Controllers
             loginViewModel.CompanyId = 1; //ToDo = get companyID from Umbraco Setup.
             var apiUrl = "https://localhost:44324";
             var method = "/Access/login";
-            var client = new RestClient(apiUrl);
-            var request = new RestRequest(method, Method.POST);
-            var data = JsonConvert.SerializeObject(loginViewModel);
-            request.AddParameter("application/json; charset=utf-8", data, ParameterType.RequestBody);
-            request.RequestFormat = DataFormat.Json;
+            var apiClient = new ApiClient(apiUrl);
+            var response = apiClient.Post<LoggedUser, LoginViewModel>(method, loginViewModel);
 
-            try
+            if (response != null)
             {
-                var response = client.Execute(request);
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var userData = new JsonDeserializer().Deserialize<LoggedUser>(response);
-                    AuthenticateTicket.AddAuthenticationTicket(userData);
-                }
-                else
-                {
-                    var loginError = "LoginError";
-                }
-
-            }
-            catch (Exception error)
-            {
-                // Log
+                AuthenticateTicket.AddAuthenticationTicket(response);
             }
 
             return null;

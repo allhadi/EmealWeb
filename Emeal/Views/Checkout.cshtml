@@ -17,7 +17,7 @@
                         <div class="card-body text-dark">
                             <p class="card-text">
                                 @{
-                                Html.RenderAction("Basket", "Cart");
+                                    Html.RenderAction("Basket", "Cart");
                                 }
                             </p>
                         </div>
@@ -26,11 +26,11 @@
                     <hr />
                     <div>
                         @{
-                        Html.RenderAction("DeliveryAddress", "CheckOut");
+                            Html.RenderAction("DeliveryAddress", "CheckOut");
                         }
 
                         @{
-                        Html.RenderAction("BillingAddress", "CheckOut");
+                            Html.RenderAction("BillingAddress", "CheckOut");
                         }
                         <hr />
                         <div class="card border-dark mb-3">

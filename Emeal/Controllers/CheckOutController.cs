@@ -1,4 +1,8 @@
-﻿using Emeal.Model.ViewModels;
+﻿using Emeal.Model;
+using Emeal.Model.ViewModels;
+using Emeal.OrderApi;
+using Emeal.Security;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,22 +41,13 @@ namespace Emeal.Controllers
 
         private List<Address> GetAddresses() 
         {
+            var apiUrl = "https://localhost:44324";
+            var method = "/api/Address/Get";
+            var apiClient = new ApiClient(apiUrl);
+            var response = apiClient.GetList<Address>(method);
 
-            return new List<Address>()
-            {
-                new Address()
-                {
-                     Address1 = "abc",
-                      City = "Dhaka",
-                       PostCode = "3200"
-                },
-                new Address()
-                {
-                     Address1 = "wer",
-                      City = "Sylhet",
-                       PostCode = "3200"
-                }
-            };
+            return response;
+           
         }
     }
 }
