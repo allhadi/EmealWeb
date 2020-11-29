@@ -1,0 +1,30 @@
+﻿
+.doctor-list {
+    width: 100%;
+    background-color: #F2F2F2;
+    margin: 10px 0;
+}
+
+.doc-color-green {
+    border-left: 10px solid #22D475;
+}
+
+.doc-color-blue {
+    border-left: 10px solid #4FD2E3;
+}
+
+.doc-color-yellow {
+    border-left: 10px solid #F7DE1B;
+}
+
+.doc-color-orange {
+    border-left: 10px solid #FFAB3D;
+}
+
+.doc-color-purple {
+    border-left: 10px solid #CC65E0;
+}
+
+.popover {
+    min-width: 27%;
+}

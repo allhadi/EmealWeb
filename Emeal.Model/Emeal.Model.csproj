@@ -52,6 +52,7 @@
     <Compile Include="User.cs" />
     <Compile Include="ViewModels\Address.cs" />
     <Compile Include="ViewModels\AddressListViewModel.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
   </ItemGroup>
