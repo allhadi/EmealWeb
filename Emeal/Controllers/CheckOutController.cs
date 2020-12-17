@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Umbraco.Web.Mvc;
+using static Emeal.Common.Enums;
 
 namespace Emeal.Controllers
 {
@@ -24,7 +25,7 @@ namespace Emeal.Controllers
         // GET: CheckOut
         public ActionResult DeliveryAddress()
         {
-            var addressList = GetAddresses();
+            var addressList = GetAddresses(AddressType.DeliveryAddress);
             return PartialView("Address", new AddressListViewModel()
             {
                 Addresses = addressList,
@@ -33,7 +34,7 @@ namespace Emeal.Controllers
         }
         public ActionResult BillingAddress()
         {
-            var addressList = GetAddresses();
+            var addressList = GetAddresses(AddressType.BillingAddress);
             return PartialView("Address", new AddressListViewModel()
             {
                 Addresses = addressList,
@@ -41,14 +42,13 @@ namespace Emeal.Controllers
             });
         }
 
-        private List<Address> GetAddresses() 
+        private List<CustomerAddress> GetAddresses(AddressType addressType) 
         {
             var apiUrl = "https://localhost:44324";
             var method = "/api/Address/Get";
             var apiClient = new ApiClient(apiUrl);
-            var response = apiClient.GetList<Address>(method);
-
-            return response;
+            var response = apiClient.GetList<CustomerAddress>(method);
+            return response.Where(x=>x.AddressType == (int)addressType).ToList();
            
         }
         [HttpGet]
@@ -58,7 +58,34 @@ namespace Emeal.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddAddress(AddressViewModel models)
+        public ActionResult AddDeliveryAddress(AddressViewModel models)
+        {
+            if (!ModelState.IsValid)
+            {
+                return null;
+            }
+            var addressList = GetAddresses(AddressType.BillingAddress);
+            AddAddress(models, AddressType.DeliveryAddress);
+            if (!addressList.Any())
+            {
+                AddAddress(models, AddressType.BillingAddress);
+            }
+            return CurrentUmbracoPage();
+        }
+
+        [HttpPost]
+        public ActionResult AddBillingAddress(AddressViewModel models)
+        {
+            if (!ModelState.IsValid)
+            {
+                return null;
+            }
+            AddAddress(models, AddressType.BillingAddress);
+            return CurrentUmbracoPage();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAddress(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -66,16 +93,32 @@ namespace Emeal.Controllers
             }
 
             var apiUrl = "https://localhost:44324";
-            var method = "/api/Address/Save";
+            var method = "/api/Address/Delete";
             var dataModel = new AddressDto()
             {
-                Address1 = models.Address,
-                City = models.City,
-                PostCode = models.PostCode
+                Id = id
             };
             var apiClient = new ApiClient(apiUrl);
             var response = apiClient.Post<ApiResult, AddressDto>(method, dataModel);
             return CurrentUmbracoPage();
+        }
+
+        private void AddAddress(AddressViewModel models, AddressType addressType)
+        {
+            var apiUrl = "https://localhost:44324";
+            var method = "/api/Address/Save";
+            var dataModel = new AddressDto()
+            {
+                StreetAddress = models.StreetAddress,
+                ExtendedStreetAddress = models.ExtendedStreetAddress,
+                Town = models.Town,
+                County = models.County,
+                PostCode = models.PostCode,
+                AddressType = (int)addressType
+
+            };
+            var apiClient = new ApiClient(apiUrl);
+            var response = apiClient.Post<ApiResult, AddressDto>(method, dataModel);
         }
     }
 }

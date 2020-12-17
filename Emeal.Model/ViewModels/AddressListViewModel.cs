@@ -10,11 +10,11 @@ namespace Emeal.Model.ViewModels
     public class AddressListViewModel
     {
         public AddressType AddressType { set; get; }
-        public List<Address> Addresses { set; get; }
+        public List<CustomerAddress> Addresses { set; get; }
 
         public AddressListViewModel()
         {
-            Addresses = new List<Address>(); 
+            Addresses = new List<CustomerAddress>(); 
         }
     }
 }

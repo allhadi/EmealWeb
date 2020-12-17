@@ -3,20 +3,15 @@
     @{
     Layout = "master.cshtml";
     }
-    <section class="section">
 
+    @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+    <section class="section" style="margin:100px 0px 100px 0px">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-
-                            @{
-                            Html.RenderAction("LoginForm", "User");
-                            }
-
-                        </div>
-                    </div>
+            <div class="row justify-content-center ">
+                <div class="col-md-6 Login-form" style="border: 2px solid black; border-radius: 5px;padding: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    @{
+                    Html.RenderAction("LoginForm", "User");
+                    }
                 </div>
             </div>
         </div>

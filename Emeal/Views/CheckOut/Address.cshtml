@@ -1,28 +1,39 @@
 ﻿@model Emeal.Model.ViewModels.AddressListViewModel
 
-<div class="card border-dark mb-3">
+<div class="card border-dark">
     <div class="card-header">@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery") Address</div>
     <div class="card-body text-dark">
         @foreach (var address in Model.Addresses)
         {
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")AddressRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label" for="exampleRadios1">
+            var addressType = Model.AddressType == Enums.AddressType.BillingAddress ? "Billing" : "Delivery";
+            <div class="row" id="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")">
+                <div class="radio col-md-10 ">
+                    <label>
+                        <input OnClick="ChangeAddress('@addressType', @address.Id)" type="radio" name="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")" checked>
                         @address.AddressLine
-                </label>
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    @using (Html.BeginUmbracoForm<Emeal.Controllers.CheckOutController>("DeleteAddress"))
+                    {
+                        <input type="hidden" id="id" name="id" value="@address.Id" />
+                        <input type="submit" class="btn btn-danger btn-action btn-delete" value="-" />
+                    }
+                </div>
             </div>
+
         }
         <hr />
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                        <a class="" data-toggle="collapse" href="#@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")collapseExample" role="button" aria-expanded="false" aria-controls="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")collapseExample">
-                            Add Address
-                        </a>
+                    <a class="" data-toggle="collapse" href="#@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")collapseExample" role="button" aria-expanded="false" aria-controls="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")collapseExample">
+                        Add Address
+                    </a>
                     <div class="collapse" id="@(Model.AddressType== Enums.AddressType.BillingAddress?"Billing":"Delivery")collapseExample">
                         <div class="card card-body">
                             @{
-                                Html.RenderAction("AddressForm", "CheckOut",new {id=Model.AddressType});
+                                Html.RenderAction("AddressForm", "CheckOut", new { id = Model.AddressType });
                             }
                         </div>
                     </div>

@@ -487,6 +487,7 @@
     <Content Include="css\onlineorder.css" />
     <Content Include="css\PopoverStylesheet.css" />
     <Content Include="css\purple.css" />
+    <Content Include="css\Menu.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\bootstrap.bundle.js" />
     <Content Include="scripts\bootstrap.bundle.min.js" />
@@ -645,6 +646,7 @@
     <Compile Include="Umbraco.Web.PublishedContentModels\Products.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Rating.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\Setting.generated.cs" />
+    <Compile Include="Umbraco.Web.PublishedContentModels\UserProfile.generated.cs" />
     <Compile Include="Umbraco.Web.PublishedContentModels\UserRegistration.generated.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -707,6 +709,8 @@
     <Content Include="Views\CheckOut\Checkout.cshtml" />
     <Content Include="Views\CheckOut\Address.cshtml" />
     <Content Include="Views\CheckOut\AddressForm.cshtml" />
+    <Content Include="Views\UserProfile.cshtml" />
+    <Content Include="Views\Cart\Braintree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

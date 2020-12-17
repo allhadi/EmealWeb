@@ -1,0 +1,48 @@
+﻿@model Emeal.Model.Cart
+<section>
+    <!-- Step one: add an empty container to your page -->
+    @using (Html.BeginUmbracoForm("BraintreePayment", "Cart", null, new { id = "payment-form" }))
+    {
+        <section>
+            <label for="amount">
+                <span class="input-label">Amount</span>
+            </label>
+            <div class="input-wrapper amount-wrapper">
+                <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="@Model.GrandTotal">
+            </div>
+            <div class="bt-drop-in-wrapper">
+                <div id="bt-dropin"></div>
+            </div>
+        </section>
+        <div id="dropin-container"></div>
+        <input id="nonce" name="payment_method_nonce" type="hidden" />
+        <input type="submit" />
+    }
+</section>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.25.0/js/dropin.min.js"></script>
+<script>
+    var client_token = "@Model.ClientToken";
+    const form = document.getElementById('payment-form');
+    braintree.dropin.create({
+        authorization: client_token,
+        container: '#dropin-container',
+        paypal: {
+            flow: 'vault'
+        }
+    }, function (createErr, instance) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            instance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    console.log('Error', err);
+                    return;
+                }
+                // Add the nonce to the form and submit
+                document.getElementById('nonce').value = payload.nonce;
+                console.log("nonce:"+payload.nonce);
+                form.submit();
+            });
+        });
+    });
+</script>

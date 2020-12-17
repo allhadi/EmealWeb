@@ -1,11 +1,11 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Checkout>
-@using ContentModels = Umbraco.Web.PublishedModels;
-@{
-	Layout = "master.cshtml";
-}
+    @using ContentModels = Umbraco.Web.PublishedModels;
+    @{
+    Layout = "master.cshtml";
+    }
 
-<section class="section">
-    <div class='container'>
+    <section class="section">
+        <div class='container'>
             <div class='row'>
                 <div class='col-md-12'>
                     <h2 style="text-align: center;">
@@ -36,30 +36,34 @@
                         <div class="card border-dark mb-3">
                             <div class="card-header">Payment</div>
                             <div class="card-body text-dark">
-                                <button type="button" class="btn btn-primary btn-sm">Payment >></button>
+                                @{
+                                    Html.RenderAction("PaymentMethod", "Cart");
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-</section>
-<script>
+    </section>
+  
+    <script>
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        $('.po-markup > .po-link').popover({
-            trigger: 'click',
-            html: true,  // must have if HTML is contained in popover
-            // get the title and conent
-            title: function () {
-                return $(this).parent().find('.po-title').html();
-            },
-            content: function () {
-                return $(this).parent().find('.po-body').html();
-            },
-            container: 'body',
-            placement: 'left'
+            $('.po-markup > .po-link').popover({
+                trigger: 'click',
+                html: true,  // must have if HTML is contained in popover
+                // get the title and conent
+                title: function () {
+                    return $(this).parent().find('.po-title').html();
+                },
+                content: function () {
+                    return $(this).parent().find('.po-body').html();
+                },
+                container: 'body',
+                placement: 'left'
+            });
         });
-    });
-</script>
+
+    </script>

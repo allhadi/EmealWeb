@@ -5,62 +5,43 @@
 }
 
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+<section class="section" style=" margin: 100px 0px 100px 0px">
+    <div class="row justify-content-center">
+        <div class="col-md-3 " style="border: 2px solid black; border-radius: 5px;padding: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            @{
+                Html.RenderAction("RegistrationForm", "User");
+            }
+        </div> <!-- col.//-->
+    </div> <!-- row.//-->
+</section>
 
-<head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-</head>
-<div class="row">
-    <div class="col-md-6 container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+    <script>
+        function check_pass() {
+            if (document.getElementById('password').value ==
+                document.getElementById('confirm_password').value) {
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
+        }
 
-                @{
-                    Html.RenderAction("LoginForm", "User");
-                }
-                
-            </div>
-            </div>
-    </div>
+        function submitRegistrationData() {
+            $.post("/umbraco/surface/User/Registration",
+                {
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val()
+                });
+        }
 
-    <div class="col-md-6 container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                @{
-                    Html.RenderAction("RegistrationForm", "User");
-                }
-            </div> <!-- col.//-->
-        </div> <!-- row.//-->
-    </div>
-    <!--container end.//-->
-</div>
+        function submitLoginData() {
+            $.post("/umbraco/surface/User/Login",
+                {
+                    userName: $("#userName").val(),
+                    password: $("#password").val()
+                });
+        }
 
-<script>
-    function check_pass() {
-                            if (document.getElementById('password').value ==
-                                document.getElementById('confirm_password').value) {
-                                document.getElementById('submit').disabled = false;
-                            } else {
-                                document.getElementById('submit').disabled = true;
-                            }
-                          }
-
-  function submitRegistrationData() {
-    $.post("/umbraco/surface/User/Registration",
-                                        {
-                                            name: $("#name").val(),
-                                            email: $("#email").val(),
-                                            password: $("#password").val()
-                                        });
-                                    }
-
-  function submitLoginData() {
-    $.post("/umbraco/surface/User/Login",
-                                {
-                                    userName: $("#userName").val(),
-                                    password: $("#password").val()
-                                });
-                            }
-
-</script>
+    </script>
 
 

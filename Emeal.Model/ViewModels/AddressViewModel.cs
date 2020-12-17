@@ -12,10 +12,17 @@ namespace Emeal.Model.ViewModels
     {
         public Enums.AddressType AddressType { set; get; }
         [Required(ErrorMessage = "Required")]
-        public string Address { get; set; }
+        public string StreetAddress { get; set; }
+
+        public string ExtendedStreetAddress { get; set; }
+
         [Required(ErrorMessage = "Required")]
-        public string City { get; set; }
+        public string Town { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string County { get; set; }
+
         [Required(ErrorMessage = "Required")]
         public string PostCode { get; set; }
+
     }
 }

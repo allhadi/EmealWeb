@@ -1,0 +1,89 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.UserProfile>
+	@using ContentModels = Umbraco.Web.PublishedModels;
+	@{
+	Layout = null;
+	}
+											 <div class="profile__blocks">
+											 	<div class="profile__block">
+											 		<h3 class="profile__block__title">My profile</h3>
+											 		<div class="profile__block__content">
+											 			<form action="/profile" id="contact-information-form" method="post" role="form" novalidate="">
+											 				<div class="input-box js-input-box ">
+											 					<input type="email" class=" " id="contact-information-email" name="customer[email]" placeholder=" " value="" data-validation-msg="Enter a valid email address" required="true">
+											 					<label for="contact-information-email">Email</label>
+											 				</div>
+											 				<div class="checkout__contact-information__form-full-name">
+											 					<div class="input-box js-input-box checkout__contact-information__form-first-name">
+											 						<input type="text" class=" " id="contact-information-first-name" name="customer[first_name]" placeholder=" " value="" data-validation-msg="Please enter your name" required="true">
+											 						<label for="contact-information-first-name">First name</label>
+											 					</div>
+											 					<div class="input-box js-input-box checkout__contact-information__form-last-name">
+											 						<input type="text" class=" " id="contact-information-last-name" name="customer[last_name]" placeholder=" " value="" data-validation-msg="Please enter your last name" required="true">
+											 						<label for="contact-information-last-name">Last name</label>
+											 					</div>
+											 				</div>
+											 				<div class="input-box js-input-box contact-information-mobile-number-wrap ">
+											 					<input type="tel" class=" " id="contact-information-mobile-number" name="customer[mobile_number]" placeholder=" " value="" data-validation-msg="Enter a valid mobile number" required="true">
+											 					<label for="contact-information-mobile-number">Mobile number</label>
+											 				</div>
+											 				<button class="button pull-right checkout__step__item-button js-ripple" type="submit">save<i class="ripple"></i></button>
+											 			</form>
+											 		</div>
+											 	</div>
+
+											 	<div class="profile__block">
+											 		<h3 class="profile__block__title">Address</h3>
+											 		<div class="profile__block__content">
+											 			<form action="/profile" id="profile-passwords-form" method="post" role="form" novalidate="">
+											 				<div class="input-box js-input-box ">
+											 					<input type="" class=" " id="profile-passwords-form-old-password" name="password_form[old_password]" placeholder=" " value="" data-validation-msg="Please enter a password" required="true">
+											 					<label for="profile-passwords-form-old-password">Full Address</label>
+											 				</div>
+											 				<div class="input-box js-input-box ">
+											 					<input type="" class=" " id="profile-passwords-form-new-password" name="password_form[new_password]" placeholder=" " value="" data-validation-msg="You password is too short. Please use a password with at least 6 characters."
+															 required="true">
+											 					<label for="profile-passwords-form-new-password">City</label>
+											 				</div>
+											 				<div class="input-box js-input-box ">
+											 					<input type="" class=" " id="profile-passwords-form-new-password" name="password_form[new_password]" placeholder=" " value="" data-validation-msg="You password is too short. Please use a password with at least 6 characters."
+															 required="true">
+											 					<label for="profile-passwords-form-new-password">Post Code</label>
+											 				</div>
+											 				<button class="button checkout__step__item-button pull-right js-ripple" type="submit">save<i class="ripple"></i></button>
+											 			</form>
+											 		</div>
+											 	</div>
+
+
+											 	<div class="profile__block">
+											 		<h3 class="profile__block__title">Password</h3>
+											 		<div class="profile__block__content">
+											 			<form action="/profile" id="profile-passwords-form" method="post" role="form" novalidate="">
+											 				<div class="input-box js-input-box ">
+											 					<input type="password" class=" " id="profile-passwords-form-old-password" name="password_form[old_password]" placeholder=" " value="" data-validation-msg="Please enter a password" required="true">
+											 					<label for="profile-passwords-form-old-password">Current password</label>
+											 				</div>
+											 				<div class="input-box js-input-box ">
+											 					<input type="password" class=" " id="profile-passwords-form-new-password" name="password_form[new_password]" placeholder=" " value="" data-validation-msg="You password is too short. Please use a password with at least 6 characters."
+															 required="true">
+											 					<label for="profile-passwords-form-new-password">New password</label>
+											 				</div>
+											 				<button class="button checkout__step__item-button pull-right js-ripple" type="submit">save<i class="ripple"></i></button>
+											 			</form>
+											 		</div>
+											 	</div>
+											 	<div class="profile__block profile__block--list">
+											 		<h3 class="profile__block__title">My payments</h3>
+											 		<div class="profile__block__content">
+											 			<div class="checkout__saved-payment-options__form" id="checkout-saved-payment-options" role="form">
+											 				<div class="checkout__saved-payment-options__list sprite-form">
+											 					<div class="checkout__saved-payment-options-error-message form__error-message hide">Something went wrong</div>
+											 					<div class="no-card-message hide">
+											 						<p>You have no saved payment options yet.</p>
+											 					</div>
+											 				</div>
+											 			</div>
+											 		</div>
+											 	</div>
+											 	<div class="profile__block profile-blocks-wrapper-root"></div>
+											 </div>

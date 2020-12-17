@@ -22,8 +22,10 @@
 
         public enum AddressType
         {
-           DeliveryAddress,
-           BillingAddress
+           [Description("Delivery")]
+           DeliveryAddress = 1,
+           [Description("BillingAddress")]
+           BillingAddress = 2
         }
     }
 }

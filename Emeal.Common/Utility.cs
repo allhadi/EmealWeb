@@ -33,5 +33,6 @@ namespace Emeal.Common
                                 .Description == description).SingleOrDefault();
             return field == null ? default(T) : (T)field.Field.GetRawConstantValue();
         }
+
     }
 }
