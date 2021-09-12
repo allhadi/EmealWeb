@@ -338,3 +338,9 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/Emeal/App_Data/Logs/*
+/Emeal/App_Data/Logs/*
+/Emeal/App_Data/TEMP/*
+/Emeal/App_Data/cache/*
+/Emeal/App_Data/TEMP/*
+/Emeal/App_Data/cache/*
