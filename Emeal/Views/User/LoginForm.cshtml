@@ -27,14 +27,18 @@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <a class="" style="text-align:right;">Forgot Password?</a>
+            <a href="/user/forgot-password/">Forgot Password?</a>
         </div>
 
         <div class="form-group">
             <div class="col-md-12">
-                <input type="submit" value="Login" class="btn btn-primary btn-lg btn-block" />
+                @if(TempData["ErrorMessage"]!= null)
+                {
+                <div class="alert-danger"> @TempData["ErrorMessage"] </div>
+                }
+                <input type="submit" value="Login" class="btn btn-success btn-lg btn-block" />
             </div>
         </div>
-        <p>New to Emeal? <a href="/user-registration" class="mercado-hyperlink--primary"><strong>Join now</strong></a></p>
+        <p>If you have no account with us, please <a href="/user/registration" class="mercado-hyperlink--primary"><strong>Join now</strong></a></p>
     </div>
 }
