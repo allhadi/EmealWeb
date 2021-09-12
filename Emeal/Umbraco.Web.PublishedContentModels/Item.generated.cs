@@ -60,6 +60,13 @@ namespace Umbraco.Web.PublishedModels
 		public string ItemName => this.Value<string>("itemName");
 
 		///<summary>
+		/// Option
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.0")]
+		[ImplementPropertyType("option")]
+		public IPublishedContent Option => this.Value<IPublishedContent>("option");
+
+		///<summary>
 		/// Photo
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.0")]

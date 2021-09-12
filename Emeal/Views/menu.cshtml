@@ -5,7 +5,7 @@
     var site = Model.Root();
     var setting = (ContentModels.Setting)Model.Root().Children.Where(x => x.IsDocumentType("setting")).FirstOrDefault();
     var day = DateTime.Now.DayOfWeek.ToString().Substring(0, 3);
-    var settingDay = setting.OpenDays.ToList().FirstOrDefault(x=>x.DayName==day);
+    var settingDay = setting.OpenDays.ToList().FirstOrDefault(x => x.DayName == day);
     var settingTime = settingDay.OpeningTime;
     var toDay = DateTime.Now.Date;
     var cTime = $"{toDay.ToShortDateString()} {settingDay.ClosingTime}:00";
@@ -20,97 +20,150 @@
 
     <div class="container">
         <article>
-            <div>
 
-                @if (settingDay.Open)
-                {
-                    <div>
-                        <h1>Open</h1>
-                        <p>
-                            Opening at : @settingDay.OpeningTime<br>
-                            Collection Time : @settingDay.CollectionTime<br>
-                            Last Order : lastOrderTime
-                            We are Closing at @settingDay.ClosingTime<br>
-                            @if (setting.DeliveryEnable)
-                            {
-                               <span> Delivery Time : @settingDay.DeliveryTime</span> <br>
-                               <span> Last DeliveryTime: lastDeliveryTime </span>
-
-                            }
-                        </p>
-                     </div>
-                }
-                else
-                {
-                    <h1>We are closed!!</h1>
-                }
-            
-        </div>
             @Html.GetGridHtml(Model, "bodyText", "bootstrap3-fluid")
 
         </article>
         <div class="">
-            <div class="row">
-                <div class="col-md-2 sticky category-tab">
-                    <div class="list-group" id="list-tab" role="tablist">
-                        @foreach (ContentModels.Category category in Model.Children)
-                        {
-                            <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#cat-@category.Id" role="tab" aria-controls="home">
-                                @category.CategoryName
-                            </a>
-                        }
-                    </div>
-                </div>
 
-                <div class="col-md-6 emeal-product">
-                    @foreach (ContentModels.Category category in Model.Children)
+            <div class="col-md-3 col-sm-12 category-tab">
+                <div class="list-group" id="list-tab" role="tablist">
+                    @foreach (ContentModels.Category category in Model.Children.Where(x => x.ContentType.Alias == "category"))
+                    {
+                        <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#cat-@category.Id" role="tab" aria-controls="home">
+                            @category.CategoryName
+                        </a>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-5 emeal-product card">
+                <div>
+
+                    @if (settingDay.Open)
                     {
                         <div>
-                            <h2 id="cat-@category.Id"> @category.CategoryName </h2>
-                            @Html.Raw(category.Description);
+                            <h1>Open</h1>
+                            <p>
+                                Opening at : @settingDay.OpeningTime<br>
+                                Collection Time : @settingDay.CollectionTime<br>
+                                Last Order : lastOrderTime
+                                We are Closing at @settingDay.ClosingTime<br>
+                                @if (setting.DeliveryEnable)
+                                {
+                                    <span> Delivery Time : @settingDay.DeliveryTime</span> <br>
+                                    <span> Last DeliveryTime: lastDeliveryTime </span>
+
+                                }
+                            </p>
                         </div>
+                    }
+                    else
+                    {
+                        <h1>We are closed!!</h1>
+                    }
 
-                        foreach (ContentModels.Item item in category.Children)
+                </div>
+                @foreach (ContentModels.Category category in Model.Children.Where(x => x.ContentType.Alias == "category"))
+                {
+                    <div>
+                        <h3 id="cat-@category.Id"> @category.CategoryName </h3>
+                        <p>@Html.Raw(category.Description)</p>
+                    </div>
+
+
+                    foreach (var item in category.Children)
+                    {
+                        if (item.ContentType.Alias == "item")
                         {
-                            <div class="card mb-3">
-                                <div class="employee-grid__item__image card-img-top" style="background-image: url('@item.Photo.Url')"></div>
-                                <div class="card-body">
-                                    <h5 class="card-title">@item.Name</h5>
-                                    <p class="card-text"> @item.Description </p>
-                                    <div class="col-md-3">
-                                        @item.Price.ToString("C")
-                                    </div>
-                                    <div class="col-md-2 btn-item">
-                                        <button data-id="@item.Id" onclick="addItem(@item.Id)" type="button" class="btn btn-secondary btn-add-item @(settingDay.Open?"active":"btn-disable")">Add</button>
-
-                                    </div>
-                                </div>
-                            </div>
+                            @DisplayItem((ContentModels.Item)item, settingDay.Open)
                         }
+                        else
+                        {
+                            // set meal
+                            @DiaplaySetmeal((ContentModels.Setmeal)item, settingDay.Open)
+                        }
+                    }
+
+                }
+            </div>
+
+            <div class="col-md-4">
+                <div id="cart_content">
+                    @{
+                        Html.RenderAction("Basket", "Cart");
                     }
                 </div>
 
-                <div class="col-md-4">
-                    <div id="cart_content">
-                        @{
-                            Html.RenderAction("Basket", "Cart");
-                        }
-                    </div>
-                   
-                    <div class="row chk-out-btn">
-                        <div class="col-md-12 " id="checkout-btn">
-                            <div class="col-md-6">
-                                <a class="btn btn-danger btn-check-out1" href="/Checkout/Payment">Check Out</a>
-                            </div>
+                <div class="row chk-out-btn">
+                    <div class="col-md-12 " id="checkout-btn">
+                        <div class="col-md-6">
+                            <a class="btn btn-danger btn-check-out1" href="/Checkout/Payment">Check Out</a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                </div>
         </div>
     </div>
+
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="AddItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@helper DisplayItem(ContentModels.Item item, bool isOpen)
+{
+    <div class="card mb-3">
+
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text"> @item.Description </p>
+            <div class="col-sm-6">
+                @item.Price.ToString("C")
+            </div>
+            <div class="col-sm-6 btn-item">
+                <button data-id="@item.Id" onclick="addItem(@item.Id)" type="button" class="btn btn-secondary btn-add-item @(isOpen?"active":"btn-disable")">Add</button>
+
+            </div>
+        </div>
+    </div>
+}
+
+@helper DiaplaySetmeal(ContentModels.Setmeal setmeal, bool isOpen)
+{
+    <div class="card mb-3">
+
+        <div class="card-body">
+            <h5 class="card-title">@setmeal.Name</h5>
+            <p class="card-text"> @setmeal.Description </p>
+            <div class="col-md-3">
+                @setmeal.Price.ToString("C")
+            </div>
+            <div class="col-md-2 btn-item">
+                <button data-id="@setmeal.Id" onclick="addItem(@setmeal.Id)" type="button" class="btn btn-secondary btn-add-item @(isOpen?"active":"btn-disable")">Add</button>
+            </div>
+        </div>
+    </div>
+}
 <script>
 
     function addItem(Id) {
